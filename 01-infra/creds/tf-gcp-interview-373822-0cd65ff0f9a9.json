@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tf-gcp-interview-373822",
+  "private_key_id": "0cd65ff0f9a93fd98c72826b929acf59372ffc80",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCITRF8EKPFfIVn\nZ60GBccNRDiqvQvCS0LL0M8e+o0SAbbNtdBjz7Cwl1T83nPx7Y/ZqXWseLnF5UYi\nnsubwr9BKETtN9WqpHSfbGfVW3gWL4rnPmGL1mRQDSmxuobg86Xzxg4Vafo6B6GQ\nfJ6oJ0kuDULKfuQ12kejWbHv4rTwpALa23Fvil1wMQivDcCdRrh3r4qPXe6cFrSo\ntbGkUhxmWKZyEFyhQXeZi+0aUTDl0K6jQrIXg/WYrk3g+r2lEoU3nSmf3ufSrL+y\nITi+t9cMLHPQBSPvqKcLBQKx1S2bUi59b99IHVRmKUf0l3RbEetR3RqfUiiicmXP\nD+dkc0KrAgMBAAECggEACIpftpjqUiUPzN9rsY1qIBQuwtAOrRF/MXs3hzbm4QJ3\nfGNQl/h7F02cNy4PMNEUauyZ4YE9Dr/jiabOlkd5KXGHBCA0BLnCTv0BcpaFK0q2\nVvALN7Jq3bM9chQAgJbzxpcZ6dCWq80vm/ibDmlLxhVxonOaBB/Vzk///MqFUPC2\njdcN/elzXhETW/eRAG1wE/d2vOQAGqz7Cr6jWlPxBDgwbcHUPVOOZdX7mZ17msyi\ne61x1Ek2mj2w3h8vsxpgl1JMsSmTJ0CnoJuDLajJUmYrOgfEGmhogo5skqYEN7cr\noFiZz1ir1YS98ewKalHQRgSLwF/KPiI8XpiCX8QsjQKBgQC9BU0U2f/dF8yC62pk\nwWi8LzSfIoUk4TGAkCQACZbLXiSXlHD8e4y7mchkV1pSRwwsCx0souUd5YQ32ajS\nAd6JdZBN+6vNc1ANT5dtTMZqoBkX5MZ78+/bVtmAak2Le9MRU8VdSfPApE3DCpH3\nizuVawM4OrpwhJ45tIEtxaCkbwKBgQC4mWQbARzT2VDT37IiqYAB3lfnIf4ZU9d5\nn1Ze+YBqLSCJTiFq3DA/W0lh8t4bWmWMZLhs8QSGwQRNFi9NNooQKXq7UgTDuvuj\n/8hdzyTS/cvg0NgZJqxtIsv26dOyWSMUF1rjvttsKM694gL5EIg3rWJ8cMcPLen1\nwOt9Ogv7hQKBgD0Uy3XjhHUzzZi47makwW2ea4jJJPFn/BEpgxioAJyzTWvWQjS0\n0COHbGRQfhV8dAh/huv3r8ZbdsB9i7phdEJDRWCN5VS84K+MesiNOMkX90PrX+CK\nUYY1qI+AypI6b1h4E50z2prz/VT7w3OVAKomLKItCDZ4BJFtLRlXdbPtAoGBAKpg\nqQxjkn/Va8yiAoALgaI33Vnu/d/SimYuskEmd2eIDyerfRxr7fwL/UbyKh2E6YUS\n0UV7jnnxXE7p0u6pD/Sq1CRgJxWgVvGe+wfaUFqM9Mei+lD8aNix7R8P4dwSeVXp\n2HGrjkndwDNxjtzibVc2KFhCnvdboTy5up/yG20hAoGBALTp2yB5F6oQCpjznsqu\ncjJRbB5/PjkdzULWF/EZE8W+K4aBwEBSiMZLFur2Zo/CcbvAIYW4wA35NJns6qOA\nHSao1WLLgfy1rk2lV8cEtNJ3Du34RAZV/o6LagBUobebBLaxee7qnojW729tHZSJ\n0YKfQa8C6xXxgxNifjF4ujzx\n-----END PRIVATE KEY-----\n",
+  "client_email": "tf-consul-demo@tf-gcp-interview-373822.iam.gserviceaccount.com",
+  "client_id": "101604596242101993168",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tf-consul-demo%40tf-gcp-interview-373822.iam.gserviceaccount.com"
+}
