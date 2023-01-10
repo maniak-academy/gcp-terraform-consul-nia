@@ -15,6 +15,9 @@ resource "google_compute_instance" "spoke1_vm" {
     ssh-keys           = fileexists(var.public_key_path) ? "${var.spoke_vm_user}:${file(var.public_key_path)}" : ""
   }
 
+#   metadata_startup_script = templatefile("${path.module}/scripts/startup-app.sh", {
+#     consul_version = "1.14.3"
+#   })
   network_interface {
     subnetwork = module.vpc_spoke1.subnets_self_links[0]
     #network_ip = cidrhost(var.cidr_spoke1, 10)
@@ -29,6 +32,9 @@ resource "google_compute_instance" "spoke1_vm" {
   service_account {
     scopes = var.spoke_vm_scopes
   }
+  depends_on = [
+    google_compute_address.consul_external_ip
+  ]
 }
 
 

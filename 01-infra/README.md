@@ -32,3 +32,7 @@ Remove SSL verification checks to simplify communication to your Consul cluster.
 ```
  export CONSUL_HTTP_SSL_VERIFY=false
 ```
+
+
+Username: paloalto
+Password: Pal0Alt0@123

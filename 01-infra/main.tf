@@ -32,6 +32,40 @@ locals {
 # ----------------------------------------------------------------------------------------------------------------
 # Create mgmt, untrust, and trust networks
 
+#shared-service
+
+
+module "vpc_ss" {
+  source       = "terraform-google-modules/network/google"
+  project_id   = var.project_id
+  network_name = "${local.prefix}ss-vpc"
+  routing_mode = "GLOBAL"
+
+  subnets = [
+    {
+      subnet_name   = "${local.prefix}${var.region}-ss"
+      subnet_ip     = var.cidr_ss
+      subnet_region = var.region
+    }
+  ]
+
+  firewall_rules = [
+    {
+      name        = "${local.prefix}shared-services"
+      direction   = "INGRESS"
+      priority    = "100"
+      description = "Allow ingress shared services"
+      ranges      = var.allowed_sources
+      allow = [
+        {
+          protocol = "tcp"
+          ports    = ["22", "8500", "8200", "8300", "8301", "8501"]
+        }
+      ]
+    }
+  ]
+}
+
 module "vpc_mgmt" {
   source       = "terraform-google-modules/network/google"
   project_id   = var.project_id
@@ -56,7 +90,7 @@ module "vpc_mgmt" {
       allow = [
         {
           protocol = "tcp"
-          ports    = ["22", "443","8200"]
+          ports    = ["22", "443"]
         }
       ]
     }
@@ -207,7 +241,8 @@ module "lb_external" {
   name      = "${local.prefix}fw-extlb"
   rules = {
     "rule1" = { port_range = 80 },
-    "rule2" = { port_range = 22 }
+    "rule2" = { port_range = 22 },
+    "rule3" = { port_range = 8500 }
   }
 
   health_check_http_port         = 80
@@ -334,3 +369,54 @@ module "peering_trust_spoke2" {
   peer_import_custom_routes                = true
   peer_export_subnet_routes_with_public_ip = true
 }
+
+
+
+module "peering_ss_mgmt" {
+  source = "PaloAltoNetworks/vmseries-modules/google//modules/vpc-peering"
+
+  local_network      = module.vpc_ss.network_id
+  local_peering_name = "${local.prefix}ss-to-mgmt"
+  peer_network       = module.vpc_mgmt.network_id
+  peer_peering_name  = "${local.prefix}mgmt-to-ss"
+
+  local_export_custom_routes                = true
+  local_export_subnet_routes_with_public_ip = true
+
+  peer_import_custom_routes                = true
+  peer_export_subnet_routes_with_public_ip = true
+}
+
+
+
+module "peering_ss_spoke1" {
+  source = "PaloAltoNetworks/vmseries-modules/google//modules/vpc-peering"
+
+  local_network      = module.vpc_ss.network_id
+  local_peering_name = "${local.prefix}ss-to-spoke1"
+  peer_network       = module.vpc_spoke1.network_id
+  peer_peering_name  = "${local.prefix}spoke1-to-ss"
+
+  local_export_custom_routes                = true
+  local_export_subnet_routes_with_public_ip = true
+
+  peer_import_custom_routes                = true
+  peer_export_subnet_routes_with_public_ip = true
+}
+
+
+module "peering_ss_spoke2" {
+  source = "PaloAltoNetworks/vmseries-modules/google//modules/vpc-peering"
+
+  local_network      = module.vpc_ss.network_id
+  local_peering_name = "${local.prefix}ss-to-spoke2"
+  peer_network       = module.vpc_spoke2.network_id
+  peer_peering_name  = "${local.prefix}spoke2-to-ss"
+
+  local_export_custom_routes                = true
+  local_export_subnet_routes_with_public_ip = true
+
+  peer_import_custom_routes                = true
+  peer_export_subnet_routes_with_public_ip = true
+}
+

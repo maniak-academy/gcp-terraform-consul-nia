@@ -35,6 +35,12 @@ variable "cidr_mgmt" {
   type        = string
   default     = null
 }
+
+variable "cidr_ss" {
+  description = "The CIDR range of the ss subnetwork."
+  type        = string
+  default     = null
+}
 variable "cidr_untrust" {
   description = "The CIDR range of the untrust subnetwork."
   type        = string
