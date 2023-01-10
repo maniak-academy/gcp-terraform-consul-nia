@@ -15,9 +15,9 @@ resource "google_compute_instance" "spoke2_api" {
     serial-port-enable = true
     ssh-keys           = fileexists(var.public_key_path) ? "${var.spoke_vm_user}:${file(var.public_key_path)}" : ""
   }
-  # metadata_startup_script = templatefile("${path.module}/scripts/startup-api.sh", {
-  #   consul_version = "1.14.3"
-  # })
+  metadata_startup_script = templatefile("${path.module}/scripts/startup-api.sh", {
+    consul_version = "1.14.3"
+  })
 
   network_interface {
     subnetwork = module.vpc_spoke2.subnets_self_links[0]

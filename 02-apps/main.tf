@@ -10,6 +10,6 @@ data "terraform_remote_state" "environment" {
 
 provider "google" {
   credentials = file("./creds/tf-gcp-interview-373822-f78452d3049f.json")
-  project     = var.project_id
-  region      = var.region
+  project     = data.terraform_remote_state.environment.outputs.project_id
+  region      = data.terraform_remote_state.environment.outputs.region
 }

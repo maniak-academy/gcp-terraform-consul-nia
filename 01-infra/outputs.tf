@@ -10,14 +10,8 @@ output "ssh_to_spoke2" {
 
 output "vmseries01_access" {
   description = "Management URL for vmseries01."
-  value       = "https://${module.vmseries["vmseries01"].public_ips[1]}"
+  value       = "${module.vmseries["vmseries01"].public_ips[1]}"
 }
-
-output "vmseries02_access" {
-  description = "Management URL for vmseries02."
-  value       = "https://${module.vmseries["vmseries02"].public_ips[1]}"
-}
-
 
 output "consul_server_external" {
   description = "External IP address of the consul server."
@@ -25,6 +19,22 @@ output "consul_server_external" {
 
 }
 
+output "vmseries02_access" {
+  description = "Management URL for vmseries02."
+  value       = "${module.vmseries["vmseries02"].public_ips[1]}"
+}
+
+
+output "region" {
+  description = "GCloud Region"
+  value       = var.region
+}
+
+output "project_id" {
+  description = "GCloud Project ID"
+  value       = var.project_id
+}
+  
 
 # output "kubernetes_cluster_name" {
 #   value       = google_container_cluster.primary.name
