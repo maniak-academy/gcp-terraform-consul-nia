@@ -13,11 +13,11 @@ output "vmseries01_access" {
   value       = "${module.vmseries["vmseries01"].public_ips[1]}"
 }
 
-output "consul_server_external" {
-  description = "External IP address of the consul server."
-  value       = "https://${google_compute_address.consul_external_ip.address}:8500"
+# output "consul_server_external" {
+#   description = "External IP address of the consul server."
+#   value       = "https//${google_compute_address.consul_external_ip.address}:8500"
 
-}
+# }
 
 output "vmseries02_access" {
   description = "Management URL for vmseries02."
@@ -49,3 +49,34 @@ output "project_id" {
 #   value       = var.region
 #   description = "GCloud Region"
 # }
+
+output "spoke_vm_user" {
+  description = "Spoke VM User"
+  value       = var.spoke_vm_user
+}
+output "spoke_vm_type" {
+  description = "Spoke VM Type"
+  value       = var.spoke_vm_type
+}
+
+output "google_compute_zones" {
+  value = data.google_compute_zones.main.names[0]
+}
+
+output "ss_subnets_self_links0" {
+  value = "${module.vpc_ss.subnets_self_links[0]}"
+}
+
+output "spoke_vm_image" {
+  description = "Spoke VM Image"
+  value       = var.spoke_vm_image
+}
+
+output "spoke_vm_scopes" {
+    description = "Spoke VM scopes"
+  value       = var.spoke_vm_scopes
+}
+
+output "vpc_spoke1_network_id" {
+  value = "${module.vpc_spoke1.network_id}" 
+}

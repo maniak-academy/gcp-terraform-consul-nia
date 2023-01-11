@@ -1,11 +1,11 @@
 
 
 # --------------------------------------------------------------------------------------------------------------------------
-# Create spoke2 compute instances. 
+# Create spoke1 compute instances. 
 
-resource "google_compute_instance" "spoke2_api" {
-  count                     = 2
-  name                      = "${local.prefix}spoke2-api${count.index + 1}"
+resource "google_compute_instance" "spoke1_api" {
+  count                     = 3
+  name                      = "${local.prefix}spoke1-api${count.index + 1}"
   machine_type              = var.spoke_vm_type
   zone                      = data.google_compute_zones.main.names[0]
   can_ip_forward            = false
@@ -20,7 +20,7 @@ resource "google_compute_instance" "spoke2_api" {
   })
 
   network_interface {
-    subnetwork = module.vpc_spoke2.subnets_self_links[0]
+    subnetwork = module.vpc_spoke1.subnets_self_links[0]
   }
 
   boot_disk {

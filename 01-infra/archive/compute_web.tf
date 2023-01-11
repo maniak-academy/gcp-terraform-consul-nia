@@ -3,9 +3,9 @@
 # --------------------------------------------------------------------------------------------------------------------------
 # Create spoke2 compute instances. 
 
-resource "google_compute_instance" "spoke2_api" {
-  count                     = 2
-  name                      = "${local.prefix}spoke2-api${count.index + 1}"
+resource "google_compute_instance" "spoke2_web" {
+  count                     = 3
+  name                      = "${local.prefix}spoke2-web${count.index + 1}"
   machine_type              = var.spoke_vm_type
   zone                      = data.google_compute_zones.main.names[0]
   can_ip_forward            = false
@@ -15,7 +15,7 @@ resource "google_compute_instance" "spoke2_api" {
     serial-port-enable = true
     ssh-keys           = fileexists(var.public_key_path) ? "${var.spoke_vm_user}:${file(var.public_key_path)}" : ""
   }
-  metadata_startup_script = templatefile("${path.module}/scripts/startup-api.sh", {
+  metadata_startup_script = templatefile("${path.module}/scripts/startup-web.sh", {
     consul_version = "1.14.3"
   })
 

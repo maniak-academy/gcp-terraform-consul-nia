@@ -4,33 +4,33 @@
 
 resource "google_compute_instance" "spoke1_vm" {
   count                     = 2
-  name                      = "${local.prefix}spoke1-vm${count.index + 1}"
-  machine_type              = var.spoke_vm_type
-  zone                      = data.google_compute_zones.main.names[0]
+  name                      = "spoke1-vm${count.index + 1}"
+  machine_type              = data.terraform_remote_state.environment.outputs.spoke_vm_type
+  zone                      = data.terraform_remote_state.environment.outputs.google_compute_zones
   can_ip_forward            = false
   allow_stopping_for_update = true
 
   metadata = {
     serial-port-enable = true
-    ssh-keys           = fileexists(var.public_key_path) ? "${var.spoke_vm_user}:${file(var.public_key_path)}" : ""
+    ssh-keys           = fileexists(var.public_key_path1) ? "${data.terraform_remote_state.environment.outputs.spoke_vm_user}:${file(var.public_key_path1)}" : ""
   }
 
   metadata_startup_script = templatefile("${path.module}/scripts/startup-app.sh", {
     consul_version = "1.14.3"
   })
   network_interface {
-    subnetwork = module.vpc_spoke1.subnets_self_links[0]
+    subnetwork = "us-central1-spoke1"
     #network_ip = cidrhost(var.cidr_spoke1, 10)
   }
 
   boot_disk {
     initialize_params {
-      image = var.spoke_vm_image
+      image = data.terraform_remote_state.environment.outputs.spoke_vm_image
     }
   }
 
   service_account {
-    scopes = var.spoke_vm_scopes
+    scopes = data.terraform_remote_state.environment.outputs.spoke_vm_scopes
   }
   depends_on = [
     google_compute_address.consul_external_ip
@@ -39,8 +39,8 @@ resource "google_compute_instance" "spoke1_vm" {
 
 
 resource "google_compute_instance_group" "spoke1_ig" {
-  name = "${local.prefix}spoke1-ig"
-  zone = data.google_compute_zones.main.names[0]
+  name = "spoke1-ig"
+  zone = data.terraform_remote_state.environment.outputs.google_compute_zones
 
   instances = google_compute_instance.spoke1_vm.*.id
 }
@@ -48,11 +48,11 @@ resource "google_compute_instance_group" "spoke1_ig" {
 module "spoke1_ilb" {
   source = "PaloAltoNetworks/vmseries-modules/google//modules/lb_internal"
 
-  name       = "${local.prefix}spoke1-ilb"
+  name       = "spoke1-ilb"
   backends   = { 0 = google_compute_instance_group.spoke1_ig.self_link }
   ip_address = cidrhost(var.cidr_spoke1, 10)
-  subnetwork = module.vpc_spoke1.subnets_self_links[0]
-  network    = module.vpc_spoke1.network_id
+  subnetwork = "us-central1-spoke1"
+  network    = data.terraform_remote_state.environment.outputs.vpc_spoke1_network_id
 
   all_ports = false
 

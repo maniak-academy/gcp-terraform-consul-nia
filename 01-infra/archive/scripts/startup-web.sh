@@ -68,12 +68,12 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 cat << EOF > /etc/consul.d/fakeservice.hcl
 service {
-  id      = "api"
-  name    = "api"
-  tags    = ["api"]
+  id      = "web"
+  name    = "web"
+  tags    = ["web","production"]
   port    = 80
   check {
-    id       = "api"
+    id       = "web"
     name     = "TCP on port 80"
     tcp      = "localhost:80"
     interval = "10s"

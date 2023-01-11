@@ -70,7 +70,7 @@ cat << EOF > /etc/consul.d/fakeservice.hcl
 service {
   id      = "api"
   name    = "api"
-  tags    = ["api"]
+  tags    = ["api","production"]
   port    = 80
   check {
     id       = "api"

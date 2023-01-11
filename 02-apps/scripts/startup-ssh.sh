@@ -70,7 +70,7 @@ cat << EOF > /etc/consul.d/fakeservice.hcl
 service {
   id      = "ssh"
   name    = "ssh"
-  tags    = ["ssh"]
+  tags    = ["ssh","staging"]
   port    = 22
   check {
     id       = "ssh"

@@ -68,14 +68,14 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 cat << EOF > /etc/consul.d/fakeservice.hcl
 service {
-  id      = "api"
-  name    = "api"
-  tags    = ["api"]
-  port    = 80
+  id      = "ssh"
+  name    = "ssh"
+  tags    = ["ssh","staging"]
+  port    = 22
   check {
-    id       = "api"
-    name     = "TCP on port 80"
-    tcp      = "localhost:80"
+    id       = "ssh"
+    name     = "TCP on port 22"
+    tcp      = "localhost:22"
     interval = "10s"
     timeout  = "1s"
   }
