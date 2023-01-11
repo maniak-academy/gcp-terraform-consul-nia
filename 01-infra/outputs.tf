@@ -80,3 +80,9 @@ output "spoke_vm_scopes" {
 output "vpc_spoke1_network_id" {
   value = "${module.vpc_spoke1.network_id}" 
 }
+
+output "vault_server_external" {
+  description = "External IP address of the vault server."
+  value       = "http://${google_compute_address.vault_external_ip.address}:8200"
+}
+  

@@ -784,15 +784,10 @@
                     <member>trust</member>
                   </from>
                   <source>
-                    <member>cts-addr-grp-api</member>
-                    <member>cts-addr-grp-app</member>
-                    <member>cts-addr-grp-web</member>
                     <member>spoke1-vpc</member>
                     <member>spoke2-vpc</member>
                   </source>
                   <destination>
-                    <member>cts-addr-grp-api</member>
-                    <member>cts-addr-grp-app</member>
                     <member>spoke1-vpc</member>
                     <member>spoke2-vpc</member>
                   </destination>
@@ -826,9 +821,6 @@
                     <member>trust</member>
                   </from>
                   <source>
-                    <member>cts-addr-grp-api</member>
-                    <member>cts-addr-grp-app</member>
-                    <member>cts-addr-grp-web</member>
                     <member>spoke1-vpc</member>
                     <member>spoke2-vpc</member>
                   </source>
@@ -994,21 +986,6 @@
               <tag>
                 <member>google-ip</member>
               </tag>
-            </entry>
-            <entry name="cts-addr-grp-web">
-              <dynamic>
-                <filter>web</filter>
-              </dynamic>
-            </entry>
-            <entry name="cts-addr-grp-api">
-              <dynamic>
-                <filter>api</filter>
-              </dynamic>
-            </entry>
-            <entry name="cts-addr-grp-app">
-              <dynamic>
-                <filter>app</filter>
-              </dynamic>
             </entry>
           </address-group>
         </entry>

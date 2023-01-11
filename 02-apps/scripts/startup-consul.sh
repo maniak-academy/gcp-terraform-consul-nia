@@ -172,7 +172,7 @@ terraform_provider "panos" {
 
 ##Firewall operations task
 task {
-  name = "Dynamic_Address_Group_PaloAlto_FW"
+  name = "panos1"
   description = "Automate population of dynamic address group"
   module = "github.com/maniak-academy/panos-nia-dag"
   providers = ["panos.panos1"]
@@ -184,12 +184,12 @@ task {
 
 
 task {
-  name = "Dynamic_Address_Group_PaloAlto_FW"
+  name = "panos2"
   description = "Automate population of dynamic address group"
   module = "github.com/maniak-academy/panos-nia-dag"
   providers = ["panos.panos2"]
   condition "services" {
-    names = ["web", "api", "db", "logging"]
+    names = ["web", "api", "app"]
   }  
   variable_files = ["/etc/consul-tf-sync.d/panos.tfvars"]
 }
