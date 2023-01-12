@@ -1,5 +1,5 @@
 project_id      = "tf-gcp-interview-373822"
-public_key_path = "~/.ssh/gcp-demo.pub"
+public_key_path = "~/.ssh/gcp-consuldemo.pub"
 region          = "us-central1"
 fw_image_name   = "vmseries-flex-bundle2-1010"
 fw_machine_type = "n1-standard-4"

@@ -10,7 +10,7 @@ output "ssh_to_spoke2" {
 
 output "vmseries01_access" {
   description = "Management URL for vmseries01."
-  value       = "${module.vmseries["vmseries01"].public_ips[1]}"
+  value       = module.vmseries["vmseries01"].public_ips[1]
 }
 
 # output "consul_server_external" {
@@ -34,7 +34,7 @@ output "project_id" {
   description = "GCloud Project ID"
   value       = var.project_id
 }
-  
+
 
 # output "kubernetes_cluster_name" {
 #   value       = google_container_cluster.primary.name
@@ -70,7 +70,7 @@ output "google_compute_zones" {
 }
 
 output "ss_subnets_self_links0" {
-  value = "${module.vpc_ss.subnets_self_links[0]}"
+  value = module.vpc_ss.subnets_self_links[0]
 }
 
 output "spoke_vm_image" {
@@ -79,16 +79,23 @@ output "spoke_vm_image" {
 }
 
 output "spoke_vm_scopes" {
-    description = "Spoke VM scopes"
+  description = "Spoke VM scopes"
   value       = var.spoke_vm_scopes
 }
 
 output "vpc_spoke1_network_id" {
-  value = "${module.vpc_spoke1.network_id}" 
+  value = module.vpc_spoke1.network_id
 }
 
 # output "vault_server_external" {
 #   description = "External IP address of the vault server."
 #   value       = "http://${google_compute_address.vault_external_ip.address}:8200"
 # }
-  
+
+output "username" {
+  value = "paloalto"
+}
+
+output "password" {
+  value = "Pal0Alt0@123"
+}

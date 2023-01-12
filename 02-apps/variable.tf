@@ -72,15 +72,18 @@ variable "cidr_spoke2" {
 
 variable "web_count" {
   description = "value for web_count"
-  default       = "1"
+  type        = string
+
 }
 
 variable "api_count" {
   description = "value for web_count"
-  default       = "1"
+  type        = string
+
 }
 
 variable "app_count" {
   description = "value for app_count"
-  default       = "1"
+  type        = string
+
 }
