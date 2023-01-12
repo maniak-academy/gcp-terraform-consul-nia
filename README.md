@@ -31,7 +31,7 @@ Below is the network topology of the build. Everything in the diagram is built w
 </p>
 
 
-## Prerequists
+## Prerequisites
 
 1. GCP Account 
 2. Install gcloud CLI
