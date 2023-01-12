@@ -38,6 +38,7 @@ Below is the network topology of the build. Everything in the diagram is built w
 3. Create a new GCP Project 
 4. Enable Compute API 
 5. Create a service account
+6. Note.. in both 01-infr and 02-apps I upload my service account under the /cred folder, you will need to do that.
 
 ## Part 1 - Deploy Infrastructure
 
