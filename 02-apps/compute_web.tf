@@ -4,9 +4,9 @@
 # Create spoke2 web compute instances. 
 
 resource "google_compute_instance" "spoke2_web" {
-  count                     = 3
-  name                      = "spoke1-web${count.index + 1}"
-  machine_type              = data.terraform_remote_state.environment.outputs.spoke_vm_type
+  count                     = var.web_count
+  name                      = "spoke2-web${count.index + 1}"
+  machine_type              = data.terraform_remote_state.environment.outputs.spoke_vm_type2
   zone                      = data.terraform_remote_state.environment.outputs.google_compute_zones
   can_ip_forward            = false
   allow_stopping_for_update = true

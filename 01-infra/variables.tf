@@ -79,6 +79,13 @@ variable "spoke_vm_image" {
   default     = "ubuntu-os-cloud/ubuntu-2004-lts"
 }
 
+variable "spoke_vm_type2" {
+  description = "The image path for the compute instances deployed in the spoke networks."
+  type        = string
+  default     = "n1-standard-2"
+
+}
+
 variable "spoke_vm_user" {
   description = "The username for the compute instance in the spoke networks."
   type        = string

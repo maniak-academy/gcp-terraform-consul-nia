@@ -4,9 +4,9 @@
 # Create spoke1 API compute instances. 
 
 resource "google_compute_instance" "spoke1_api" {
-  count                     = 3
+  count                     = var.api_count
   name                      = "spoke1-api${count.index + 1}"
-  machine_type              = data.terraform_remote_state.environment.outputs.spoke_vm_type
+  machine_type              = data.terraform_remote_state.environment.outputs.spoke_vm_type2
   zone                      = data.terraform_remote_state.environment.outputs.google_compute_zones
   can_ip_forward            = false
   allow_stopping_for_update = true

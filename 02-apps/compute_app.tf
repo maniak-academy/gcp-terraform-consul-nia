@@ -2,10 +2,10 @@
 # --------------------------------------------------------------------------------------------------------------------------
 # Create spoke1 compute instances with internal load balancer
 
-resource "google_compute_instance" "spoke1_vm" {
-  count                     = 2
-  name                      = "spoke1-vm${count.index + 1}"
-  machine_type              = data.terraform_remote_state.environment.outputs.spoke_vm_type
+resource "google_compute_instance" "spoke1_app" {
+  count                     = var.app_count
+  name                      = "spoke1-app${count.index + 1}"
+  machine_type              = data.terraform_remote_state.environment.outputs.spoke_vm_type2
   zone                      = data.terraform_remote_state.environment.outputs.google_compute_zones
   can_ip_forward            = false
   allow_stopping_for_update = true
@@ -20,7 +20,7 @@ resource "google_compute_instance" "spoke1_vm" {
   })
   network_interface {
     subnetwork = "us-central1-spoke1"
-    #network_ip = cidrhost(var.cidr_spoke1, 10)
+    # network_ip = cidrhost(var.cidr_spoke1, 10)
   }
 
   boot_disk {
@@ -38,26 +38,26 @@ resource "google_compute_instance" "spoke1_vm" {
 }
 
 
-resource "google_compute_instance_group" "spoke1_ig" {
-  name = "spoke1-ig"
-  zone = data.terraform_remote_state.environment.outputs.google_compute_zones
+# resource "google_compute_instance_group" "spoke1_ig" {
+#   name = "spoke1-ig"
+#   zone = data.terraform_remote_state.environment.outputs.google_compute_zones
 
-  instances = google_compute_instance.spoke1_vm.*.id
-}
+#   instances = google_compute_instance.spoke1_vm.*.id
+# }
 
-module "spoke1_ilb" {
-  source = "PaloAltoNetworks/vmseries-modules/google//modules/lb_internal"
+# module "spoke1_ilb" {
+#   source = "PaloAltoNetworks/vmseries-modules/google//modules/lb_internal"
 
-  name       = "spoke1-ilb"
-  backends   = { 0 = google_compute_instance_group.spoke1_ig.self_link }
-  ip_address = cidrhost(var.cidr_spoke1, 10)
-  subnetwork = "us-central1-spoke1"
-  network    = data.terraform_remote_state.environment.outputs.vpc_spoke1_network_id
+#   name       = "spoke1-ilb"
+#   backends   = { 0 = google_compute_instance_group.spoke1_ig.self_link }
+#   ip_address = cidrhost(var.cidr_spoke1, 10)
+#   subnetwork = "us-central1-spoke1"
+#   network    = data.terraform_remote_state.environment.outputs.vpc_spoke1_network_id
 
-  all_ports = false
+#   all_ports = false
 
-  timeout_sec       = 1
-  ports             = [80]
-  health_check_port = 80
+#   timeout_sec       = 1
+#   ports             = [80]
+#   health_check_port = 80
 
-}
+# }

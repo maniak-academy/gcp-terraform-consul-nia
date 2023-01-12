@@ -55,7 +55,6 @@ sudo chmod 640 /etc/consul.d/consul.hcl
 cat << EOF > /etc/consul.d/consul.hcl
 data_dir = "/opt/consul"
 datacenter = "maniakacademyDC1"
-ui = true
 retry_join = ["10.5.0.99"]
 EOF
 
@@ -66,11 +65,11 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 
 
-cat << EOF > /etc/consul.d/fakeservice.hcl
+cat << EOF > /etc/consul.d/web.hcl
 service {
   id      = "web"
   name    = "web"
-  tags    = ["web","production"]
+  tags    = ["web"]
   port    = 80
   check {
     id       = "web"

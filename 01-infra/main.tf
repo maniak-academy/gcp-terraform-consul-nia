@@ -22,9 +22,9 @@ locals {
     vmseries01 = {
       zone = data.google_compute_zones.main.names[0]
     }
-    vmseries02 = {
-      zone = data.google_compute_zones.main.names[1]
-    }
+    # vmseries02 = {
+    #   zone = data.google_compute_zones.main.names[1]
+    # }
   }
 }
 
@@ -59,7 +59,7 @@ module "vpc_ss" {
       allow = [
         {
           protocol = "tcp"
-          ports    = ["22", "8500", "8200", "8300", "8301", "8501", "8558"]
+          ports    = ["22", "8500", "8200", "8300", "8301", "8501", "8558","80"]
         }
       ]
     }

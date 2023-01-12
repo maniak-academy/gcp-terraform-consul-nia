@@ -163,13 +163,6 @@ terraform_provider "panos" {
   password = "Pal0Alt0@123"
 }
 
-terraform_provider "panos" {
-  alias = "panos2"
-  hostname = "${panos_mgmt_addr2}"
-  username = "paloalto"
-  password = "Pal0Alt0@123"
-}
-
 ##Firewall operations task
 task {
   name = "panos1"
@@ -177,22 +170,12 @@ task {
   module = "github.com/maniak-academy/panos-nia-dag"
   providers = ["panos.panos1"]
   condition "services" {
-    names = ["web", "api", "db", "logging"]
+    names = ["web","api","app","ssh"]
   }  
   variable_files = ["/etc/consul-tf-sync.d/panos.tfvars"]
 }
 
 
-task {
-  name = "panos2"
-  description = "Automate population of dynamic address group"
-  module = "github.com/maniak-academy/panos-nia-dag"
-  providers = ["panos.panos2"]
-  condition "services" {
-    names = ["web", "api", "app"]
-  }  
-  variable_files = ["/etc/consul-tf-sync.d/panos.tfvars"]
-}
 EOF
 
 cat << EOF > /etc/consul-tf-sync.d/panos.tfvars

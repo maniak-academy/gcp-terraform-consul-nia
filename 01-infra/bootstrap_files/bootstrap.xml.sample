@@ -787,12 +787,15 @@
                     <member>cts-addr-grp-api</member>
                     <member>cts-addr-grp-app</member>
                     <member>cts-addr-grp-web</member>
+                    <member>cts-addr-grp-ssh</member>
                     <member>spoke1-vpc</member>
                     <member>spoke2-vpc</member>
                   </source>
                   <destination>
                     <member>cts-addr-grp-api</member>
                     <member>cts-addr-grp-app</member>
+                    <member>cts-addr-grp-web</member>
+                    <member>cts-addr-grp-ssh</member>
                     <member>spoke1-vpc</member>
                     <member>spoke2-vpc</member>
                   </destination>
@@ -829,6 +832,7 @@
                     <member>cts-addr-grp-api</member>
                     <member>cts-addr-grp-app</member>
                     <member>cts-addr-grp-web</member>
+                    <member>cts-addr-grp-ssh</member>
                     <member>spoke1-vpc</member>
                     <member>spoke2-vpc</member>
                   </source>
@@ -998,6 +1002,11 @@
             <entry name="cts-addr-grp-web">
               <dynamic>
                 <filter>web</filter>
+              </dynamic>
+            </entry>
+            <entry name="cts-addr-grp-ssh">
+              <dynamic>
+                <filter>ssh</filter>
               </dynamic>
             </entry>
             <entry name="cts-addr-grp-api">

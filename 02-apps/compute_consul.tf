@@ -10,7 +10,7 @@ resource "google_compute_address" "consul_external_ip" {
 resource "google_compute_instance" "ss_vm1_consul" {
   count                     = 1
   name                      = "ss-vm-consul${count.index + 1}"
-  machine_type              = data.terraform_remote_state.environment.outputs.spoke_vm_type
+  machine_type              = var.spoke_vm_type2
   zone                      = data.terraform_remote_state.environment.outputs.google_compute_zones
   can_ip_forward            = false
   allow_stopping_for_update = true
@@ -22,8 +22,7 @@ resource "google_compute_instance" "ss_vm1_consul" {
 
   metadata_startup_script = templatefile("${path.module}/scripts/startup-consul.sh", {
     consul_version   = "1.14.3",
-    panos_mgmt_addr1 = "${data.terraform_remote_state.environment.outputs.vmseries01_access}",
-    panos_mgmt_addr2 = "${data.terraform_remote_state.environment.outputs.vmseries02_access}"
+    panos_mgmt_addr1 = "${data.terraform_remote_state.environment.outputs.vmseries01_access}"
   })
 
 

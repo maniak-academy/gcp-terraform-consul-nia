@@ -55,7 +55,6 @@ sudo chmod 640 /etc/consul.d/consul.hcl
 cat << EOF > /etc/consul.d/consul.hcl
 data_dir = "/opt/consul"
 datacenter = "maniakacademyDC1"
-ui = true
 retry_join = ["10.5.0.99"]
 EOF
 
@@ -70,7 +69,7 @@ cat << EOF > /etc/consul.d/fakeservice.hcl
 service {
   id      = "ssh"
   name    = "ssh"
-  tags    = ["ssh","staging"]
+  tags    = ["ssh"]
   port    = 22
   check {
     id       = "ssh"

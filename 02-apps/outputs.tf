@@ -18,11 +18,11 @@ output "vmseries01_access" {
   value = "https://${data.terraform_remote_state.environment.outputs.vmseries01_access}"
 }
 
-output "vmseries02_access" {
-  description = "Management URL for vmseries02."
-  value = "https://${data.terraform_remote_state.environment.outputs.vmseries02_access}"
-}
+# output "vmseries02_access" {
+#   description = "Management URL for vmseries02."
+#   value = "https://${data.terraform_remote_state.environment.outputs.vmseries02_access}"
+# }
 
-output "vault_server_external" {
-  value = data.terraform_remote_state.environment.outputs.vault_server_external
-}
+# output "vault_server_external" {
+#   value = data.terraform_remote_state.environment.outputs.vault_server_external
+# }
