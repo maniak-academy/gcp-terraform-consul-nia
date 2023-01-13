@@ -173,7 +173,7 @@ module "iam_service_account" {
 # Create storage bucket to bootstrap VM-Series.
 module "bootstrap" {
   source = "PaloAltoNetworks/vmseries-modules/google//modules/bootstrap"
-
+  location = var.region
   service_account = module.iam_service_account.email
 
   files = {
