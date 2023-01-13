@@ -38,12 +38,12 @@ resource "google_compute_instance" "spoke1_app" {
 }
 
 
-# resource "google_compute_instance_group" "spoke1_ig" {
-#   name = "spoke1-ig"
-#   zone = data.terraform_remote_state.environment.outputs.google_compute_zones
+resource "google_compute_instance_group" "spoke1_ig" {
+  name = "spoke1-ig"
+  zone = data.terraform_remote_state.environment.outputs.google_compute_zones
 
-#   instances = google_compute_instance.spoke1_vm.*.id
-# }
+  instances = google_compute_instance.spoke1_vm.*.id
+}
 
 # module "spoke1_ilb" {
 #   source = "PaloAltoNetworks/vmseries-modules/google//modules/lb_internal"
